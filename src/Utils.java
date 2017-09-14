@@ -16,8 +16,8 @@ class Utils {
     private static Pattern endFile = Pattern.compile(".+\\.txt");
     private static Pattern phoneRegex = Pattern.compile("^((8|\\+7)[\\s- ]?)?(\\(?\\d{3}\\)?[\\s- ]?)?[\\d\\s- ]{5,17}$");
     private static Pattern deleteSymbols = Pattern.compile("(\\+|-| |\\(|\\))");
-
-    static List<File> getAllFiles(Scanner sc){
+    private static Scanner sc = new Scanner(System.in);
+    static List<File> getAllFiles(){
         List<File> files = new ArrayList<>();
         System.out.println("Enter the path to directory/file or write 'default' : ");
         String pathToDirOrFile = sc.next();
@@ -60,14 +60,15 @@ class Utils {
             }
         }
         printNumbers(sortedNumbers);
+        repeat();
 
     }
-    static void repeat(Scanner sc){
+  private static void repeat(){
         System.out.println("Do you want to try again? Y/N : ");
         String answer = sc.next();
         while (answer.equals("Y")) {
-            getNumbers(getAllFiles(sc));
-            repeat(sc);
+            getNumbers(getAllFiles());
+            repeat();
         }
         System.exit(0);
     }
