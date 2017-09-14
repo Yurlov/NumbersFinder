@@ -64,7 +64,7 @@ class Utils {
         repeat();
 
     }
-  private static void repeat(){
+    private static void repeat(){
         System.out.println("Do you want to try again? Y/N : ");
         String answer = sc.next();
         while (answer.equals("Y")) {
@@ -86,7 +86,7 @@ class Utils {
             try {
                 MaskFormatter mf = new MaskFormatter(mask);
                 mf.setValueContainsLiteralCharacters(false);
-                 String result = mf.valueToString(num);
+                String result = mf.valueToString(num);
                 forPrint.add(result);
             } catch (ParseException e) {
                 e.printStackTrace();
