@@ -17,7 +17,7 @@ class Utils {
     private static Pattern phoneRegex = Pattern.compile("^((8|\\+7)[\\s- ]?)?(\\(?\\d{3}\\)?[\\s- ]?)?[\\d\\s- ]{5,17}$");
     private static Pattern deleteSymbols = Pattern.compile("(\\+|-| |\\(|\\))");
     private static Scanner sc = new Scanner(System.in);
-    static List<File> getAllFiles(){
+    private static List<File> getAllFiles(){
         List<File> files = new ArrayList<>();
         System.out.println("Enter the path to directory/file or write 'default' : ");
         String pathToDirOrFile = sc.next();
@@ -38,8 +38,9 @@ class Utils {
         }
         return files;
     }
-    static void getNumbers(List<File> files){
-        List<String> sortedNumbers = new ArrayList<>();
+    public static void getNumbers(){
+        List<File> files = getAllFiles();
+        List<String> allNumbers = new ArrayList<>();
         for (File file : files) {
             if (endFile.matcher(file.getName()).matches()) {
                 try {
@@ -48,7 +49,7 @@ class Utils {
                     for (String line: lines ) {
                         Matcher m = phoneRegex.matcher(line);
                         if(m.find()){
-                            sortedNumbers.add(m.group().replaceAll(deleteSymbols.toString(),"").trim());
+                            allNumbers.add(m.group().replaceAll(deleteSymbols.toString(),"").trim());
                         }
 
                     }
@@ -59,7 +60,7 @@ class Utils {
 
             }
         }
-        printNumbers(sortedNumbers);
+        printNumbers(allNumbers);
         repeat();
 
     }
@@ -67,7 +68,7 @@ class Utils {
         System.out.println("Do you want to try again? Y/N : ");
         String answer = sc.next();
         while (answer.equals("Y")) {
-            getNumbers(getAllFiles());
+            getNumbers();
             repeat();
         }
         System.exit(0);
