@@ -60,7 +60,7 @@ class Utils {
             }
         }
         printNumbers(sortedNumbers);
-        
+
     }
     static void repeat(Scanner sc){
         System.out.println("Do you want to try again? Y/N : ");
